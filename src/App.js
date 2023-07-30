@@ -1,51 +1,18 @@
-import Directory from "./components/directory/directory.component";
-import { ReactComponent as CrwnLogo} from '../src/assests/crown.svg';
-import { ReactComponent as CartLogo } from "../src/assests/shopping-bag.svg";
+import { Routes, Route } from "react-router-dom"; 
+
+import Navigation from "./routes/navigation/navigation.component";
+import Home from "./routes/Home/home.components";
 
 const App = () => {
 
 
-  const categories = [
-    {
-      "id": 1,
-      "title": "hats",
-      "imageUrl": "https://i.ibb.co/cvpntL1/hats.png"
-    },
-    {
-      "id": 2,
-      "title": "jackets",
-      "imageUrl": "https://i.ibb.co/px2tCc3/jackets.png"
-    },
-    {
-      "id": 3,
-      "title": "sneakers",
-      "imageUrl": "https://i.ibb.co/0jqHpnp/sneakers.png"
-    },
-    {
-      "id": 4,
-      "title": "womens",
-      "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png"
-    },
-    {
-      "id": 5,
-      "title": "mens",
-      "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
-    }
-  ]
-
-
   return (
-    <div>
-      <div>
-        <CrwnLogo />
-        <span> SHOP </span>
-        <span> SIGNIN </span>
-        {/* < CartLogo className="shopping-icon"/> */}
-      </div>
-      <Directory categories= {categories} />
-      
-
-    </div>
+    <Routes>
+      <Route path="/" element = { <Navigation /> } >
+        <Route index element = { <Home/> }/>
+      </Route>
+    </Routes>
+ 
   )
 }
 
