@@ -24,7 +24,7 @@ const SignInForm = () => {
 
 
     return (
-        <div>
+        <div className = 'sign-in-container'>
             <h2> Already have an Account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -33,7 +33,7 @@ const SignInForm = () => {
                     name= "email" 
                     required
                     label= 'Email'
-                    value={email}
+                    // value={email}
                 />
                 <FormInput 
                     type= "password" 
@@ -42,13 +42,16 @@ const SignInForm = () => {
                     label= 'Password'    
                     // value={Password}
                 />
-                <Button 
-                    type= "submit"
-                    buttontype
-                > SIGN IN</Button>
-                <Button
-                    buttonType='google'
-                > GOOGLE SIGN IN </Button>
+                <div className='buttons-container '>
+                    <Button 
+                        type= "submit"
+                        buttontype
+                    > SIGN IN</Button>
+                    <Button
+                        buttonType='google' 
+                    > GOOGLE SIGN IN </Button>
+                </div>
+                
             </form>
         </div>
     )
