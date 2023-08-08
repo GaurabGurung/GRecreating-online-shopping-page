@@ -2,6 +2,7 @@ import './sign-in-form.styles.scss';
 import Button from '../button/button.component';
 import { useState } from 'react';   
 import FormInput from '../form-input/form-input.component';
+import { signInWithGooglePopup, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 
 const defaultFormFields = {
     displayName : '',
@@ -22,6 +23,10 @@ const SignInForm = () => {
         console.log({name})
     }
 
+    const logGoogleUser = async () => {
+        const {user} = await signInWithGooglePopup ();
+        const userDocRef = createUserDocumentFromAuth (user);
+    }
 
     return (
         <div className = 'sign-in-container'>
@@ -44,12 +49,15 @@ const SignInForm = () => {
                 />
                 <div className='buttons-container '>
                     <Button 
+
                         type= "submit"
                         buttontype
                     > SIGN IN</Button>
                     <Button
+                        onClick= {logGoogleUser}
                         buttonType='google' 
                     > GOOGLE SIGN IN </Button>
+                    <button onClick= {logGoogleUser}> Sign innn now</button>
                 </div>
                 
             </form>

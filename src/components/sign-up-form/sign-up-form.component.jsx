@@ -26,7 +26,6 @@ const SignUpForm = () => {
                     name='password'
                     required
                     label= 'Password'    
-                    label= 'Password'
                 />
                 <FormInput 
                     type= "password" 
@@ -35,12 +34,13 @@ const SignUpForm = () => {
                     label= 'Confirm Password'
                 />
 
+                <Button
+                    buttonType={'google'}
+                    type=''
+                >
+                    Sign up
+                </Button>
             </form>
-            <Button
-                buttonType='google'
-            >
-                Sign up
-            </Button>
         </div>
     )
 }
