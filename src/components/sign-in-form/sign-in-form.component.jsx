@@ -1,8 +1,15 @@
 import './sign-in-form.styles.scss';
 import Button from '../button/button.component';
-import { useState } from 'react';   
+import { useState , useEffect} from 'react';   
 import FormInput from '../form-input/form-input.component';
-import { signInWithGooglePopup, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
+import { getRedirectResult } from 'firebase/auth'
+import { 
+    signInWithRedirect,
+    auth,
+    signInWithGooglePopup, 
+    createUserDocumentFromAuth, 
+    signInWithGoogleRedirect 
+} from '../../utils/firebase/firebase.utils'
 
 const defaultFormFields = {
     displayName : '',
@@ -12,6 +19,15 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
+
+    const a = async ()=> {
+        const response = await getRedirectResult(auth);
+        console.log (response);
+    };
+
+    useEffect ( () => {
+        a()
+    }, []);
 
     const [formFields, setFormFields] = useState (defaultFormFields);
     const {email, password} = formFields;
@@ -27,6 +43,8 @@ const SignInForm = () => {
         const {user} = await signInWithGooglePopup ();
         const userDocRef = createUserDocumentFromAuth (user);
     }
+
+
 
     return (
         <div className = 'sign-in-container'>
@@ -54,10 +72,10 @@ const SignInForm = () => {
                         buttontype
                     > SIGN IN</Button>
                     <Button
-                        onClick= {logGoogleUser}
+
                         buttonType='google' 
                     > GOOGLE SIGN IN </Button>
-                    <button onClick= {logGoogleUser}> Sign innn now</button>
+                    <button onClick= {signInWithGoogleRedirect}> Sign innn now</button>
                 </div>
                 
             </form>
