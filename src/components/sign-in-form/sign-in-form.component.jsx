@@ -56,14 +56,14 @@ const SignInForm = () => {
                     name= "email" 
                     required
                     label= 'Email'
-                    // value={email}
+                    value={email}
                 />
                 <FormInput 
                     type= "password" 
                     name='password'
                     required
                     label= 'Password'    
-                    // value={Password}
+                    value={password}
                 />
                 <div className='buttons-container '>
                     <Button 

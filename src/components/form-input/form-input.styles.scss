@@ -66,10 +66,11 @@ $main-color: black;
         &:focus { 
             outline: none; 
         } 
-        &:focus ~ .form-input-label { 
-            @include shrinkLabel(); 
-        } 
-    } 
+        &:focus ~ .form-input-label {   // if the user "focus " (focuses or click) on the input , 
+            @include shrinkLabel();     //I want you to find next sibling or generally subsequent sibling with the class ".form-input-label"
+        }                               // and attach that shrinlabel mixing, it create the shrinking effect
+    }                                    //However, the next or sequent sibling should be above the current one
+
     input[type='password'] {
         letter-spacing: 0.3em; 
     } 
