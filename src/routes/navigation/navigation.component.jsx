@@ -2,7 +2,7 @@ import { ReactComponent as CrwnLogo} from '../../assests/crown.svg'
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import { Link, Outlet } from 'react-router-dom';
 import './navigation.styles.scss';
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/user.context';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 
@@ -13,8 +13,21 @@ const Navigation = () => {
 
     const signOutHandler = async () => {
         await signOutUser();  // only signs out for the user
-        setCurrentUser (null)   // helps to track in our useContext hook
+        // localStorage.removeItem('authData');
+        setCurrentUser (null);   // helps to track in our useContext hook
     }
+
+    useEffect(() => {
+        const storedAuthData = localStorage.getItem('authData');
+        if (storedAuthData) {
+            // Set the context with authenticated user if storedAuthData exists.
+            setCurrentUser(/* authenticated user */);
+        } else {
+            // Set the context with not authenticated user.
+            setCurrentUser(null);
+        }
+    }, []);
+    
 
     return (
         <Fragment>
@@ -36,12 +49,11 @@ const Navigation = () => {
                             <Link className='nav-link' to= '/auth'>
                                 SIGN IN
                             </Link>
-                        )    
-                          /** if there is a currentUser , show Sign Out link, 
+                             /** if there is a currentUser , show Sign Out link, 
                           if not show sign in */
+                        ) 
+                    }   
 
-
-                    }
                     <CartIcon />
                 </div>
             </div>

@@ -3,7 +3,7 @@ import Button from '../button/button.component';
 import { useState , useContext} from 'react';
 import { UserContext } from '../../contexts/user.context';
 
-import {  signInAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
+import {  signInAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup , } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 
 import './sign-in-form.styles.scss'
@@ -31,10 +31,11 @@ const SignInForm = () => {
         
     }
 
+
     const handleSubmit = async (event)=> {
         event.preventDefault();
 
-        console.log('signnnnnn');
+
 
 
         try {
