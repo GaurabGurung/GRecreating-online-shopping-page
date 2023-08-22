@@ -8,61 +8,35 @@ import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 const Navigation = () => {
 
-    const {currentUser , setCurrentUser} = useContext (UserContext);
-    // console.log (currentUser)
-
-    const signOutHandler = async () => {
-        await signOutUser();  // only signs out for the user
-        // localStorage.removeItem('authData');
-        setCurrentUser (null);   // helps to track in our useContext hook
-    }
-
-    useEffect(() => {
-        const storedAuthData = localStorage.getItem('authData');
-        if (storedAuthData) {
-            // Set the context with authenticated user if storedAuthData exists.
-            setCurrentUser(/* authenticated user */);
-        } else {
-            // Set the context with not authenticated user.
-            setCurrentUser(null);
-        }
-    }, []);
-    
+    const {currentUser } = useContext (UserContext);
 
     return (
         <Fragment>
-            <div className="navigation">
-                <Link className="link-container" to= '/'>
-                    <CrwnLogo className="logo-container"/>
-                </Link>
-
-                <div className='nav-links-container'>
-                    <Link className='nav-link' to= '/shop'>
-                        SHOP
-                    </Link>
-
-
-                    {
-                        currentUser ? (
-                            <span className='nav-link' onClick={signOutHandler}> SIGN OUT </span>
-                            ):( 
-                            <Link className='nav-link' to= '/auth'>
-                                SIGN IN
-                            </Link>
-                             /** if there is a currentUser , show Sign Out link, 
-                          if not show sign in */
-                        ) 
-                    }   
-
-                    <CartIcon />
-                </div>
+          <div className="navigation">
+            <Link className="link-container" to='/'>
+              <CrwnLogo className="logo-container"/>         
+            </Link>
+  
+            <div className="nav-links-container">
+              <Link className="nav-link" to='/shop'>
+                SHOP
+              </Link>
+  
+              {currentUser ? (
+                <span className="nav-link" onClick={signOutUser}> SIGN OUT </span>
+              ) : (
+                <Link className="nav-link" to='/auth'>
+                SIGN IN
+              </Link>
+              )}
+            <CartIcon />
             </div>
-            <Outlet />
+
+          </div>
+          <Outlet/>
         </Fragment>
-    )
-}
+      )
+    }
+  
 
 export default Navigation;
-
-
-
