@@ -1,11 +1,14 @@
 import Button from '../button/button.component';
 import './product-card.styles.scss';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CartContext } from '../../contexts/cart.context';
+import { addCollectionAndDocuments } from '../../utils/firebase/firebase.utils';
+
+
 
 const ProductCard = ({product}) => {
     const {name, imageUrl,  price} = product;
-    const { addItemToCart, setCartCount, cartCount } = useContext(CartContext);
+    const { addItemToCart } = useContext(CartContext);
 
     const addProductToCart = ()=> {
         addItemToCart(product);
