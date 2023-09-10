@@ -14,8 +14,10 @@ import {
     doc, //methods for pulling a document
     getDoc, // method to get a file inside the documnet
     setDoc, // method to set a file inside the document
-    collection, 
-    writeBatch,
+    collection, // mostly used to create or target a specific collection
+    writeBatch, // creates a batch and writes a document using multiple methods to make it successfully  
+    query, //to find documents with some specification
+    getDocs, // use to fetch multiple documents
   } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -56,6 +58,20 @@ export const addCollectionAndDocuments = async ( collectionKey, objectToAdd) => 
     await batch.commit();
     console.log('done');
 }
+
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection (db, 'categories');
+    const q = query (collectionRef);
+
+    const querySnapShot = await getDocs (q);
+    const categoryMap = querySnapShot.docs.reduce((acc, docSnapShot)=> {  //here .docs is a methods to fetch the documents
+        const { title, items } = docSnapShot.data();
+
+        acc[title.toLowerCase()] = items;  //This part assigns the items array as the value associated with the "title' 
+        return acc;
+    }, {})
+    return categoryMap;
+};
 
 export const createUserDocumentFromAuth = async (
     userAuth , 
