@@ -67,7 +67,7 @@ export const getCategoriesAndDocuments = async () => {
     const categoryMap = querySnapShot.docs.reduce((acc, docSnapShot)=> {  //here .docs is a methods to fetch the documents
         const { title, items } = docSnapShot.data();
 
-        acc[title.toLowerCase()] = items;  //This part assigns the items array as the value associated with the "title' 
+        acc[title.toLowerCase()] = items;  //This part assigns the items array as the value associated with the "title', we are using an array: [title] because title is property with multiple values in each object 
         return acc;
     }, {})
     return categoryMap;
