@@ -1,7 +1,7 @@
 
-// cart-dropdown.styles.scss 
+import styled from 'styled-components'
 
-.cart-dropdown-container { 
+export const CartDropDown = styled.div `
     position: absolute; 
     width: 260px; 
     height: 340px; 
@@ -13,7 +13,6 @@
     top: 90px; 
     right: 40px; 
     z-index: 5; 
-    
     .empty-message { 
         font-size: 18px; 
         margin: 50px auto; 
@@ -30,4 +29,5 @@
     button { 
         margin-top: auto; 
     } 
-}
+`
+
