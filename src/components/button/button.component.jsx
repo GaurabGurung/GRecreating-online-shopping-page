@@ -22,8 +22,8 @@ const Button = ({children, buttonType, ...otherProps}) => {
 
     return (
         <CustomButton {...otherProps}> 
-            {children}
-        </CustomButton>
+        {children} 
+        </CustomButton> 
     )
 }
 
