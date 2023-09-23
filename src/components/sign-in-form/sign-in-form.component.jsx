@@ -81,7 +81,7 @@ const SignInForm = () => {
                     <Button 
                         type = 'button'
                         onClick= {signInWithGoogle}
-                        buttonType = "inverted"
+                        buttonType = {BUTTON_TYPE_CLASSES.google}
                     > Google sign in 
                     </Button>
                 </ButtonContainer>
