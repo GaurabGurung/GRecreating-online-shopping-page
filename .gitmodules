@@ -3,3 +3,6 @@
 	url = https://github.com/GaurabGurung/GRecreating-online-shopping-page/blob/main/.gitmodules
 	
 
+[submodule "GRecreating-online-shopping-page"]
+	path = GRecreating-online-shopping-page
+	url = https://github.com/GaurabGurung/GRecreating-online-shopping-page
